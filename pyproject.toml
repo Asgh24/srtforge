@@ -58,7 +58,6 @@ srtforge = ["resources/qss/*.qss", "resources/icons/*.svg", "resources/icons/*.i
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra -q"
-qt_api = "pyside6"
 
 [tool.ruff]
 line-length = 100

@@ -6,9 +6,12 @@ Build:
 Output: dist/SRTForge/SRTForge.exe (onedir) — copy that folder anywhere.
 """
 
+import os
 from pathlib import Path
 
-project_root = Path(SPECPATH).parent
+# SPECPATH is only defined when the spec is run directly by PyInstaller;
+# CI sometimes invokes it in ways where it isn't, so resolve from CWD.
+project_root = Path(SPECPATH).parent if "SPECPATH" in globals() else Path.cwd()
 src_dir = project_root / "src"
 
 a = Analysis(
