@@ -8,8 +8,9 @@ Output: dist/SRTForge/SRTForge.exe (onedir) — copy that folder anywhere.
 
 from pathlib import Path
 
-# SPECPATH is only defined when the spec is run directly by PyInstaller.
-project_root = Path(SPECPATH).parent
+# In PyInstaller, SPECPATH is the DIRECTORY containing the spec file,
+# not the file path itself.
+project_root = Path(SPECPATH)
 src_dir = project_root / "src"
 main_script = (src_dir / "srtforge" / "__main__.py").resolve()
 
