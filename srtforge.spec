@@ -6,16 +6,15 @@ Build:
 Output: dist/SRTForge/SRTForge.exe (onedir) — copy that folder anywhere.
 """
 
-import os
 from pathlib import Path
 
-# SPECPATH is only defined when the spec is run directly by PyInstaller;
-# CI sometimes invokes it in ways where it isn't, so resolve from CWD.
-project_root = Path(SPECPATH).parent if "SPECPATH" in globals() else Path.cwd()
+# SPECPATH is only defined when the spec is run directly by PyInstaller.
+project_root = Path(SPECPATH).parent
 src_dir = project_root / "src"
+main_script = (src_dir / "srtforge" / "__main__.py").resolve()
 
 a = Analysis(
-    [str(src_dir / "srtforge" / "__main__.py")],
+    [str(main_script)],
     pathex=[str(src_dir)],
     binaries=[],
     datas=[(str(src_dir / "srtforge" / "resources"), "srtforge/resources")],
