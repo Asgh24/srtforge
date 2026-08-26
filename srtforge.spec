@@ -13,12 +13,19 @@ from pathlib import Path
 project_root = Path(SPECPATH)
 src_dir = project_root / "src"
 main_script = (src_dir / "srtforge" / "__main__.py").resolve()
+resources_dir = src_dir / "srtforge" / "resources"
+
+# Only add datas if the resources dir has tracked content; PyInstaller
+# errors on an empty or missing source directory.
+datas: list[tuple[str, str]] = []
+if resources_dir.exists() and any(resources_dir.iterdir()):
+    datas.append((str(resources_dir), "srtforge/resources"))
 
 a = Analysis(
     [str(main_script)],
     pathex=[str(src_dir)],
     binaries=[],
-    datas=[(str(src_dir / "srtforge" / "resources"), "srtforge/resources")],
+    datas=datas,
     hiddenimports=[
         "pysubs2",
         "pysubs2.formats",

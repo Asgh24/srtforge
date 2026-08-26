@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="24" fill="#1a1d24"/>
+  <text x="64" y="72" font-family="Segoe UI, Arial, sans-serif" font-size="52" font-weight="bold" text-anchor="middle" fill="#7c5cff">S</text>
+  <text x="64" y="104" font-family="Segoe UI, Arial, sans-serif" font-size="18" text-anchor="middle" fill="#8a93a6">SRTForge</text>
+</svg>
