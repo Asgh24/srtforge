@@ -39,7 +39,6 @@ a = Analysis(
         "tkinter",
         "unittest",
         "pydoc",
-        "email",
         "sqlite3",
         "pydoc_data",
     ],

@@ -10,6 +10,8 @@ window, so even small-context models (8k) work fine.
 
 ![Dark theme preview](docs/screenshot-dark.png)
 
+**🌐 Languages:** [English](README.md) · [فارسی (Persian)](README.fa.md) · [العربية (Arabic)](README.ar.md) · [日本語 (Japanese)](README.ja.md)
+
 ## Features
 
 - 🌗 **Dark theme by default**, light theme, or follow the OS.
@@ -58,10 +60,12 @@ pip install -e .[tokenize]
 
 ## Quick start
 
-1. Open **API Profiles** (toolbar) → **New**, enter your OpenRouter (or any
-   OpenAI-compatible) base URL and key. Example:
-   - Base URL: `https://openrouter.ai/api/v1`
-   - API Key: `sk-or-…`
+1. Open **API Profiles** (toolbar) → **New**, enter your API endpoint and key.
+   SRTForge works with any OpenAI-compatible API. Examples:
+   - **OpenRouter:** `https://openrouter.ai/api/v1` — key: `sk-or-…`
+   - **9Router:** `https://9router.com/api/v1` — or any custom router endpoint
+   - **OpenAI:** `https://api.openai.com/v1`
+   - **Local (Ollama, LM Studio):** `http://localhost:11434/v1`
 2. Pick a **Model** — SRTForge fetches the model list (with context sizes)
    from `/models` automatically. `Refresh` re-fetches.
 3. **Add SRT…** and pick your subtitle file(s).
