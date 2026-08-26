@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Tests (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - name: Install package
+        run: pip install -e .[dev]
+      - name: Run tests
+        run: pytest -ra
+
+  build-windows:
+    name: Build Windows .exe
+    runs-on: windows-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install package + PyInstaller
+        run: pip install -e . pyinstaller
+      - name: Build exe
+        run: pyinstaller srtforge.spec --clean --noconfirm
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SRTForge-windows
+          path: dist/SRTForge/
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/SRTForge/SRTForge.exe
